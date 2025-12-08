@@ -1,0 +1,2 @@
+# Masters-Project-Exploring-Curriculum-Learning-to-Improve-Reinforcement-Learning
+Developed exploratory software applying Curriculum Learning, training agents on simpler foundational tasks before progressing to complex ones, to improve reinforcement learning. Tested in an OpenAI MuJoCo environment, this approach achieved significantly faster convergence and improved agent performance compared to traditional methods.
