@@ -1,0 +1,37 @@
+\chapter{Evaluation and Conclusions/Outlooks}
+This section includes our evaluation of the methodology followed, our implementation, the deliverables and also includes our final conclusion along with the declaration of any ethical concerns that needed to be addressed.
+
+\section{Evaluation of methodology}
+The methodology we aimed to follow was agile, following two-week sprints. Unfortunately, this plan deteriorated very early on. A key principle of Agile methodologies is frequent delivery of working software. Development was irregular, often taking place in bursts, rather than spread out evenly through a two-week sprint. Poor communication slowed development, and at times stalled it entirely. However, it should be noted that following regular two-week sprints is difficult alongside additional assignments, often taking away significant time from the project. Another issue we faced was timezone differences. This made communication much slower.
+
+\section{Evaluation of implementation}
+Our implementation fell short of the original planned scope of the project due to a variety of reasons, the most major of which was due to the missing necessary code in the initial code base that we decided to work from. This made it impossible to meet our original plan and meant that we had to reduce the complexity of the environment and thus the task assigned to the agent massively. Instead, we first implemented a simple environment with a single agent and a simple task, find the target - after which we focused mainly on the implementation of curriculum learning algorithms which was a feat of its own. \\The complexity of the environment that we initially implemented through the mapping function solely controlled the speed of the target, but later we managed to tie in the floor size of the environment in with this too. Perhaps the most significant drawback that we faced was that we had to overhaul the entire code base within the last week of the project, in order to implement the friction-based progression function in the correct fashion - since our prior, naive implementation simply approximated what we were aiming to achieve rather than accomplishing it directly. Our current implementation now correctly implements regular reinforcement learning, fixed progression with both linear and exponential progression functions, and adaptive with the friction-based progression function.
+
+\subsection{Future Work}
+
+As discussed in section 3.2.2.4, there is potential for a diverse body of future work. On the implementation side, work introducing more complex environments and tasks would be beneficial towards proving our hypothesis. Environment complexity can be increased to demonstrate how curriculum learning has significant improvements over regular approaches. Adding objects that agents can manipulate potentially introduces unexpected or unintended behaviours, like those seen in OpenAI's multi-agent environment \cite{baker2019emergent}.
+Furthermore, environment complexity could be augmented through the introduction of a restricted observation space for our agent, static environment features such as walls, and multiple agents.
+
+
+\section{Deliverables}
+We have managed to deliver a considerably comprehensive report covering all the research that we did, our implementation and subsequent analysis of our results. While also including an evaluation of these aforementioned sections.
+\\Furthermore, the git repository, which can be found in Appendix A contains the complete code base for the project, missing only the external dependencies mentioned in Appendix B.
+
+\section{Conclusion}
+To conclude, we have successfully accomplished demonstrating the power of curriculum learning. An initial hypothesis was made regarding the potential benefits of curriculum learning over the standard reinforcement learning approach. This was accomplished through understanding and explaining the intuition and technical theory behind curriculum learning. An implementation of a suitable environment with a simple reward function was developed to help with the proposed experiments. Curriculum learning with progression functions utilising the environment was implemented successfully. The run-time experiment was carried out successfully and the results acquired were very promising and showed the advantages of curriculum learning. Overall, curriculum learning is an intuitive approach to reinforcement learning and that intuition has been shown to be valuable and verified through this project. Curriculum learning may shape reinforcement learning in the years to come as more work is considered in this field.
+
+
+\section{Ethics}
+\uline{Ethical Issues}: This project did not involve collecting personal or sensitive data. Many different ethical issues are discussed within machine learning, such as racial bias, however this project is unaffected by such issues since the data gathered and evaluated is purely for a theoretical project.
+
+There are no ethical issues with the usage of code produced by others for this project.
+The code used to develop the environment is available for public use by OpenAI and has been adapted from
+\cite{github}. Moreover, the code used to implement curriculum learning was developed from the work of 
+Andrea Bassich of the University of York, the first author of paper \cite{misc01}. 
+He has given us access to the code he developed for the experiments in that paper and permission to use and
+adapt it (see Appendix~\ref{appendix:evidence}).
+
+
+\uline{Legal Issues}: The project was unaffected by legal issues, however we had to acquire licenses for software. Student licenses were free provided the project was personal, excluding projects that received financial support or were used as part of employment. Dependency licenses were also considered, with all permitting use within personal projects.
+
+

@@ -1,0 +1,116 @@
+% ------------------------------------------------------------------------------
+% Computer Science Individual Project Report Template
+% by Daniel Wise 2019
+% University of Leeds
+% ------------------------------------------------------------------------------
+\documentclass[11pt]{report} 
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\usepackage{projectreport}
+
+% ------------------------------------------------------------------------------
+% Enter your details here
+% ------------------------------------------------------------------------------
+\newcommand{\name}{Bakhtiyar Khan, Jack Auty, Luke McMahon, \\*Fu Chan, Zhouyang Wang}
+%\newcommand{\course}{BSc. Applied Computer Science}
+% \newcommand{\course}{BSc. Computer Science}
+ \newcommand{\course}{MEng. Computer Science}
+\newcommand{\projecttitle}{Exploring Curriculum Learning}
+\newcommand{\submissiondate}{April 2021}
+\newcommand{\submissionyear}{2021}
+
+% ------------------------------------------------------------------------------
+% Document
+% ------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+% ------------------------------------------------------------------------------
+% Top matter
+% ------------------------------------------------------------------------------
+\chapter*{}
+The candidate confirms that the following have been submitted:
+
+\begin{table}[h!]
+\begin{tabular}{lllll}
+\cline{1-3}
+\multicolumn{1}{|l|}{Item}   & \multicolumn{1}{l|}{Format} & \multicolumn{1}{l|}{Recipient(s) and Date} &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{Report} & \multicolumn{1}{l|}{PDF Version}       & \multicolumn{1}{l|}{Minerva 27/04/2021}                      &  &  \\ \cline{1-3}
+\multicolumn{1}{|l|}{Code Base}       & \multicolumn{1}{l|}{Git Repository}       & \multicolumn{1}{l|}{Gitlab 27/04/2021}                      &  &  \\ \cline{1-3}
+                             &                             &                                            &  & 
+\end{tabular}
+\end{table}
+
+The software code can be viewed at:
+
+Type of Project: Exploratory Software
+
+
+
+
+The candidate confirms that the work submitted is his/her own and that appropriate credit has been given where reference has been made to the work of others.
+
+I understand that failure to attribute material which is obtained from another source
+may be considered as plagiarism.
+
+% © \submissionyear\ The University of Leeds
+
+\vspace{2cm}
+Signed:
+Bakhtiyar Khan, Jack Auty, Luke McMahon, Fu Chan, Zhouyang Wang
+
+% \makebox[4cm][c]{\raisebox{-2ex}{\includegraphics[width=3cm, height=1cm]{example-image}}} % replace with your signature
+
+\vfill
+© \submissionyear\ The University of Leeds
+
+\chapter*{Acknowledgements}
+%This research has been carried out by a team which has included (name the individuals). My own contributions, fully and explicitly indicated in the thesis, have been......(please specify)” The other members of the group and their contributions have been as follows: (please specify).
+\\ We would like to thank our indispensable project supervisor Dr. Matteo Leonetti of the University of Leeds for his continued provision of direction throughout the project, and for establishing a chain of communication between us and a key collaborator Andrea Bassich.
+\\ We would also like to thank Andrea Bassich of the University of York, for his excellent guidance on the implementation of the adaptive progression function used within this project.
+
+\chapter*{Summary}
+The widely adopted approach to human education is organised in a hierarchical fashion, such that ‘easier’ content - generally content considered to be logically prerequisite to later content - is taught initially, prior to more ‘difficult’ content. Within this system, over the course of a students’ education within a field they are gradually exposed to its more complex content, allowing them to apply previously learned concepts as required to build a more thorough and complete understanding of that field. This approach to learning is often formalised under the broader concept known as a ‘Curriculum’, and we will be adapting and applying this ‘Curriculum Learning’ approach for use within the Reinforcement Learning paradigm. Specifically, we will be exploring its use within a modified version of an OpenAI environment utilising the MuJoCo physics engine \cite{multi-agent-tool}. We found that through the application of curriculum learning techniques, the speed to convergence, and performance of the agent improved massively over traditional reinforcement learning approaches.
+
+%Our exploration will involve the comparison of the agent's performance against a traditional reinforcement learning approach, along with between curriculum learning approaches that employ varying progression functions - that is ways of determining when the agent should progress to the next task \cite{misc01}.%
+
+%above commented section is 'cliffhanger' - 'need to write a sentence summarising our findings' Matteo
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+% ------------------------------------------------------------------------------
+% Main matter
+% Chapters are added to the document using the \include{chapterx} command
+% ------------------------------------------------------------------------------
+\newpage
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+
+%command out when sending the final report
+% \include{example1}
+% \include{example2}
+
+% ------------------------------------------------------------------------------
+% Reference list
+% ------------------------------------------------------------------------------
+\addcontentsline{toc}{chapter}{References}
+\renewcommand\bibname{References}
+\begin{sloppypar}
+\printbibliography
+\end{sloppypar}
+
+
+% ------------------------------------------------------------------------------
+% Appendices
+% ------------------------------------------------------------------------------
+\include{appendix}
+
+\end{document}

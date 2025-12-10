@@ -1,0 +1,118 @@
+% \chapter{Analysis}
+\chapter{Runtime Experiment}
+% **Incomplete**
+
+% \section{Analysis of ...}
+% \subsection{Comparison to non-curriculum learning within same environment}
+
+% \subsection{Comparison of progression function performance}
+We carry out a runtime experiment with different progression functions and no progression functions,
+that is, the standard reinforcement learning approach without a curriculum. The aims of the experiment
+are outlined as well as the strategy of the experiment will be executed, explaining and
+justifying the decisions made. The results of the experiment are analysed and compared to initial expectations
+from our theoretical understanding of curriculum learning and whether the practical experimentation
+confirms or denies our hypothesis. The experiments have been run on a machine with ...
+% machine specification details, e.g processor, clock speed, RAM
+
+\section{Aim}
+The main aim of this project is to explore the benefits of curriculum learning. Thus, the aim of this
+runtime experiment is to test whether curriculum learning does aid in training the agent to converge
+faster and more optimally than training without a curriculum.
+
+\section{Strategy}
+The agent is trained for the same number of total time-steps with an adaptive progression function,
+a fixed progression function and no progression function. The adaptive progression function used is the
+Friction-Based function, which is the same
+as the one described in \eqref{eq:friction-based-prog}. A parallel variant of the algorithm is used
+with 4 processes and an interval of 10000 time steps between processes to have a range of complexities
+within the 4 independent Friction-Based progression functions.
+
+The fixed progression function used is the Exponential function, which is the same as the
+one described in \eqref{eq:exp-prog}. Similarly to the Friction-Based progression, the parallel variant is
+used with 4 processes and different values of the parameter $s$ for the different processes with
+$s \in \{ 0.1, 0.73, 1.37,  2 \}$ for each of the processes respectively.
+
+No progression function refers to training without any progression function. This is training the agent on the
+hardest level difficulty task for the entire duration of training.
+This can be considered as training on a curriculum of one task with the task corresponding to the maximum
+complexity factor, that is the task $M_{t} = (0.89, 24)$ for all $t$
+(see Section~\ref{subsubsec:mapping-func-env}). The training is executed with parallel PPO with 4 processes.
+
+With a batch size of 10880, the agent is trained for 100 epochs. This is repeated for 15 iterations, the 
+average performance is given for each of the three methods of training and the deviation in performance
+also. Repeating the training for multiple iterations increases the reliability of our results.
+
+\section{Results}
+The results of the runtime experiment can be seen in Fig.~\ref{fig:results} where the performance of the
+agent measured as the probability of successfully completing an episode and finding the target, is plotted
+against the time the agent has been training.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.56\textwidth]{Images/results/test_results.png} % enter the filename here
+		\caption{Agent performance over duration of training with Friction-Based progression function,
+		Exponential progression function and no progression function.} % enter the figure caption here
+		\label{fig:results} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+The change in complexity over time is given for the two progression functions in Fig.~\ref{fig:fbp-ct} and
+Fig.~\ref{fig:exp-ct}. Observe that there are 4 lines present in each figure, each of the lines corresponds to
+an independent progression function used to train individual instances of the environment as a result of
+parallel execution. In the case of the Exponential function, the lines from left to right correspond to
+the values of $s \in \{ 0.1, 0.73, 1.37,  2 \}$ respectively. Likewise for the Friction-Based progression,
+from left to right the lines represent independent progressions with different intervals in increasing order.
+
+\begin{figure}[!htb]
+    \centering
+    \begin{minipage}{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/results/fbp-wide.png}
+        \caption{Complexity change over duration of training with Friction-Based progression}
+        \label{fig:fbp-ct}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/results/exp-4.png}
+        \caption{Complexity change over duration of training with Friction-Based progression}
+        \label{fig:exp-ct}
+    \end{minipage}
+\end{figure}
+% note to self: could recreate graphs so x-axis is in range [0,100] for percentages
+
+\section{Analysis}
+From Fig.~\ref{fig:results}, it is clear to see that curriculum learning with both progression functions
+outperforms training without a curriculum. 
+All methods show improvement in the agent's performance over time as expected. However, both
+Friction-Based progression and the Exponential progression
+train the agent to a more optimal policy in a much shorter time span. This is evident in the
+steeper gradients of the progression functions performance in comparison to training without a curriculum.
+The most optimal policies obtained from curriculum learning are significantly better than the policy
+obtained from training without a curriculum by the end of the training period. This can be seen by looking
+at the probability of the agent successfully completing an episode for each of the 3 methods at the final time
+step of training. Friction-Based progression performs the best with the agent likely to complete an episode
+with $\sim$80\% of the time, followed by $\sim$70\% for the Exponential progression and $\sim$18\%
+without curriculum learning. This is a significant increase in performance.
+Considering the results of the runtime experiment, the initial hypothesis proposed has been proven to be true.
+
+We can also compare the performance of the two progression functions from the test results in 
+Fig.~\ref{fig:results} as well as discuss the change in complexity factor over time in Fig.~\ref{fig:fbp-ct} 
+and Fig.~\ref{fig:exp-ct}. From Fig.~\ref{fig:results}, it is clear to see that Friction-Based progression
+outperforms the Exponential progression, particularly during the middle portion of training and they begin
+to show signs of converging to a similar performing policy by the end of training. From our understanding of
+the progression functions (see Section~\ref{subsec:prog-funcs}), 
+the Friction-Based progression function considers the performance of an agent
+when it determines the complexity the agent should be challenged with. This contrasts the
+Exponential progression function which is a fixed progression function and the curriculum it generates is
+predetermined based on its given parameters. It is because of this reason that the Friction-Based progression outperforms the fixed Exponential progression.
+
+This is evident from the dynamic change in complexity over time with the Friction-Based progression seen in
+Fig.~\ref{fig:fbp-ct}. Clearly we see less stable lines than for the Exponential progression in
+Fig.~\ref{fig:exp-ct}. More importantly, the initial gradient of the curve is much steeper showing that
+the Friction-Based progression has determined that the initial tasks in the curriculum are very easy and 
+that the agent can move onto more difficult tasks much sooner than the Exponential progression allows. This
+explains the difference in performance evident in Fig.~\ref{fig:results}. While the Exponential progression
+does continuously increase the performance of the agent, the Friction-Based progression has also
+trained the agent through similar tasks in its curriculum, but much faster, and has already been
+training the agent on the maximum difficulty task for much longer.
+Thus, the policy obtained by Friction-Based progression is more optimal.
+

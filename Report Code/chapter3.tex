@@ -1,0 +1,153 @@
+\chapter{Implementation}
+
+\section{Dependencies}
+%Matteo Comment: Start with some kind of high-level diagram of the system before you describe the components%
+\subsection{OpenAI Gym}
+OpenAI Gym is an open source toolkit that provides various environments, from basic environments such as classic control theory problems to more complex environments including Atari games. Gym was developed to provide standardised benchmarks for the reinforcement learning community to use, and allows the development of reinforcement learning algorithms, as well as hosting scoreboards for algorithm benchmarks. Gym focuses on episodic reinforcement learning, where the agent repeatedly interacts with the environment for a predetermined number of episodes. Within an episode, the agent performs a series of actions until reaching a terminal state. Common interfaces are provided for the environments, but agents are left to the developer, allowing them to implement their own style of agent interface \cite{misc02}.
+
+\subsection{MuJoCo - Multi-Joint dynamics with Contact}
+Multi-Joint Dynamics with Contact (MuJoCo) physics engine is a commercial general purpose simulator which enables simulations of complex dynamic systems, written in C to achieve the best performance [4]. MuJoCo has been adopted by the reinforcement learning community for algorithm benchmarks, gaining traction when the OpenAI Gym interface was released. Since MuJoCo is commercial, the project required acquiring licenses which were hardware-bound, restricting the machines we could perform the simulations on.
+MuJoCo was selected as the physics engine over alternatives by necessity as a requirement for the other listed dependencies, as well as by convenience of being what was used in the work that inspired the project.
+
+\subsubsection{MuJoCo-py}
+MuJoCo-py is a Python interface developed by OpenAI that enables use of MuJoCo with Python3. Since the project makes use of Python dependencies such as OpenAI Gym, it requires the MuJoCo-py bindings to enable development.
+
+\subsubsection{MuJoCo-Worldgen}
+MuJoCo-Worldgen is an interface developed by OpenAI that allows users to generate complex, random environments. The interface provides a set of methods that allow seeded world generation, and can be extended to add various objects. Objects and world parameters, such as floor size, allow changing the environment to increase difficulty within a curriculum.
+
+\subsection{OpenAI Baselines}
+OpenAI Baselines is a set of high-quality implementations of reinforcement learning algorithms, developed by OpenAI with the intention of creating a baseline on which the community can build upon. A vital part of research is the ability to replicate results, and by ensuring the algorithms are implemented in the same way it prevents results from being affected by unintentional bugs or untuned algorithms. This allows results to be compared fairly and progress to be met with less scepticism.
+
+\subsubsection{Stable Baselines}
+Stable Baselines is a fork of OpenAI Baselines that improves upon the latter by focusing on simplicity and consistency. A lack of comments and consistency within the code, as well as minimal documentation, made the initial version complicated to work with. Stable Baselines aimed to fix this with improvements including: a unified structure for all algorithms, additional algorithms and easy to understand documentation. More importantly, code coverage is much higher, ensuring results can be trusted more.
+\section{Experimental Setting}
+This section describes the environment used to test the benefits of a curriculum learning approach in reinforcement learning.
+
+\subsection{OpenAI Multi-Agent Emergence Environment}
+The environment developed and used in this paper is inspired by the complex multi-agent environment developed by OpenAI (Bowen, Baker and Markov, Todor) in \cite{github} as described in paper \cite{multi-agent-tool}. This environment was chosen as a basis it possesses a large action space and mutable difficulty index. It consists of multiple self-supervised hider and seeker agents who can to use aspects of the environment to their advantage in order to fulfil their respective goals. The seekers' goal is to keep the hiders within their vision, while the hiders' is to avoid the line of sight of the seekers. It is also possible to generate different objects such as walls and move-able ramps and boxes. These can be interacted with by the agents and so the environment consists of a large action space. Furthermore, complexity is introduced through the constraint to partial observation for the agents, and long-term strategies are encouraged to the point of requirement by way of delayed rewards.
+
+% https://arxiv.org/abs/1909.07528
+
+% https://openai.com/blog/emergent-tool-use/
+
+% implementation basis (of agents, objects, plane, wrappers)
+
+\subsubsection{Limitations/Difficulties}
+% \begin{itemize}
+%     \item Missing parts of code meaning hide and seek environment as they implemented it was unviable as we had to implement it ourselves using this as inspiration, rather than as a baseline
+% \end{itemize}
+
+OpenAI omitted to include the code used to define the architecture and train their network specific to the environment. This was an intentional choice to leave it to the developers to implement their own architecture and use reinforcement learning algorithms of their choice. The agent policies OpenAI implemented, but did not include, used two separate networks using two different reinforcement learning algorithms with decentralised execution and centralised training \cite{multi-agent-tool}. The difficulty of such an implementation is beyond the scope of this paper. The computing power and resources required to simulate an environment with multiple agents and a large action space were unavailable to the authors of this paper.
+
+\subsection{Our Environment}
+% How our environment was developed and has progressed.
+
+% Sub-classing base class… changes made, methods overwritten
+
+% Furthermore there will only be one seeker and one target
+
+Due to the reasons mentioned above regarding difficulty with implementing a complex architecture for the multi-agent environment and a lack of computing power, OpenAI’s environment has been simplified to a single-agent environment with a limited action space. The simplified environment used in this paper consists of a single agent (the seeker) and a target (see Fig.~\ref{fig:image01}) $-$ only the behaviour of the seeker will be dynamic as determined by the algorithm, the behaviour of the target will be fixed at run-time following from the difficulty index specified. There are no interactable objects within the environment. The actions available to the agent are: modifying speed in the x-y plane and rotation in the z-axis. This means that the agent is allowed to move freely in the environment.
+
+Modifications made to OpenAI’s environment were accomplished by sub-classing the Base class of the multi-agent emergence environment. Additional functionality via custom methods were added to incorporate modifiable behaviour within the environment during the training process for the purposes of implementing curriculum learning. Moreover, the generation of the environment has been overwritten so that the random generation of different environments for consecutive episodes are now deterministic, unlike in OpenAI’s implementation. This allows for reproducible tests when comparing results acquired via simulation from different progression functions in curriculum learning as well as a non-curriculum learning approach.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.6\textwidth]{Images/image1.png} % enter the filename here
+		\caption{Visual representation of environment developed for this paper} % enter the figure caption here
+		\label{fig:env-img} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+\subsubsection{Reward}
+The objective of the agent is to find the target or get close enough to the target. This is true for all tasks in the curriculum which is described further below. A simple reward function has been used to achieve.
+The agent receives a reward of 1 if and only if the agent is close enough to the target, when the Euclidean
+distance between the agent's and the target's position are below a threshold value. The reward is 0
+otherwise.
+The episodes terminate upon the agent finding the target and receiving a reward of 1, if
+the agent is out of bounds (see Fig.~\ref{fig:env-img}) or after 100 time-steps in the environment.
+
+\subsubsection{Curriculum}
+\label{subsubsec:curriculum}
+As described in Section.~\ref{sec:curriculum-learning}, a curriculum consists of a sequence of increasingly difficult tasks. Here we consider a task-level sequence curriculum.
+There are a number of ways to modify complexity. 
+Within the environment, complexity is found into factors: the speed of the moving target and the size
+of the floor / environment. Considering these factors of complexity, the easiest task corresponds to a very
+small environment in which there is little room for the agent and target to move in and so it will be easier 
+for the agent to find the target. Moreover, a stationary target is also an easier task for the agent.
+Therefore, a task of zero difficulty consists of a stationary target in the smallest possible environment.
+What determines the smallest possible environment has been determined by experimentation by the authors.
+
+Conversely, the most difficult task in the curriculum consists of the target moving randomly within the 
+environment at maximum speed, in the largest possible environment, which must be found by the agent.
+From the easiest task, tasks of increasing difficulty correlate to increasing speed of the
+randomly moving target as well as the floor size. 
+Note that while the objective of all tasks in the curriculum are the same for the agent, to find the target, 
+the behaviour of the target changes and this makes each task in the curriculum different and distinct.
+The behaviour of the environment via changing floor sizes increases the number of states the agent can
+explore, so this also makes each task in the curriculum different and distinct.
+
+\subsubsection{Mapping Function}
+\label{subsubsec:mapping-func-env}
+From the degrees of complexity considered, it follows that the mapping function (see 
+Section~\ref{subsec:mapping-funcs}), which maps the current complexity value in the curriculum provided by
+the progression function to a task, will alter two parameters in the environment: 
+the speed of the moving target and the size of the floor. 
+In this case, the mapping function modifies each of these two parameters in a monotonically increasing manner.
+Here the mapping function modifies the parameters linearly. The mapping function $\Phi(c_{t})$ maps to a task
+$M_{t}$ where the domain of a task $M$ is the Cartesian product of the two parameters in the environment, 
+the speed of the target and the size of the floor, namely $S \times F$ where $S = [0,0.89]$ and $F = [2,24]$.
+These bounds for the domain are designed with respect to the environment. Hence, the mapping function is
+of the form:
+\begin{equation*}
+    M_{t}(s, f) = \Phi(c_{t}) = (0.89 c_{t}, \: 22 c_{t} + 2)
+\end{equation*}
+
+\subsubsection{Other Possibilities}
+
+It is possible to consider complexity through other means. For example, introducing obstacles in the environment, such as walls or ramps, or limiting observation to only have partial observation, such as lidar vision limitation in OpenAI’s multi-agent environment. It is also possible to change the objective of the agent to introduce complexity, such as moving to the target and then moving back to the starting position – this would test the agent’s long-term memory. For the purpose of this paper and demonstrating the power of curriculum learning through a simple curriculum, two degrees of complexity have been considered, the speed of the moving target and the size of the floor.
+
+% (note: possibly subject to change if we add more things or other degrees of complexity such as weight and obstacles)
+
+% (can probably get rid of the below sub-sections including wrapper stuff)
+% \subsubsection{Cylinder Target}
+% Purpose, progression, evaluation
+% \subsubsection{Agent Target (Hider)}
+% Purpose, progression, evaluation
+% \subsubsection{Obstacle Implementation}
+% Purpose, progression, evaluation
+% \subsection{Environmental Difficulty Progression}
+% Speed of target, introduction of obstacles, changes in observation space
+
+% \subsection{Mapping Function}
+
+% \begin{itemize}
+% \item Performance function, mapping function, progression function, friction-based progression
+% \item Continuous Curriculum
+% \item Continuous mapping function
+% \end{itemize}
+
+\subsection{Parallel Execution}
+\label{subsec:parallel-exec}
+It is possible to train with multiple instances of an environment at the same time with a parallel
+implementation of PPO (see Section~\ref{subsubsec:PPO}),
+the learning acquired from the multiple instances is collected before updating the
+policy. This allows for faster training.
+In this case, each instance of the domain has its own independent progression function. 
+The interval between the instances can be changed so that agents training on different instances
+can have different complexities and be training on different tasks according to the mapping function.
+With this parallel execution, an interval range needs to be defined so that the different
+instances can have independent progression functions with different rates of growth \cite{misc01}.
+
+For example, consider the Exponential progression function defined in \eqref{eq:exp-prog}
+with parallel execution of training with 2 processes.
+It is possible to have two different parameters $s_{1}$ and $s_{2}$ for two
+independent Exponential progression functions for two instances of the environment which the two agents
+will train in. For example, a small, steep value of $s_{1}=0.1$ and a linear value of $s_{2}=2$
+(see Fig.~\ref{}),
+while the first environment will increase in complexity faster, the second is more stable and this can help
+balance training and converge to an optimal policy faster. the aforementioned points are one of the reasons
+the authors decided to use PPO as the learning algorithm, due to the benefits of this parallel implementation.
+% s possible to train with multiple instances of the domain at the sametime, like when using a parallel implementation of PPO, each instance of the do-main will have its own independent progression function. This allows the magni-tude of the interval between instances to be varied, resulting in the agent trainingon a range of complexities of the domain. When using this technique an intervalrange should be defined, and the values ofishould be distributed evenly withinthat range based on the number of processes available
+
+
+
+

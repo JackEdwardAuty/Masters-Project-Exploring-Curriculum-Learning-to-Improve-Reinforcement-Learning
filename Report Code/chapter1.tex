@@ -1,0 +1,117 @@
+\chapter{Introduction}
+\label{cha:chapter1}
+% \begin{itemize}
+%     \item Curriculum learning can be traced back to 1993
+%     \item Small discussion about OpenAI and their work
+% \end{itemize}
+
+A key goal within the Artificial Intelligence field is developing a fully autonomous agent with the ability to learn optimal behaviour via interaction with the environment. One approach to this is reinforcement learning, a sub-field within the Artificial Intelligence domain, that has been in development over several decades, with many key advancements. The idea behind reinforcement learning is simple and is essentially a formalised trial and error, where a entity uses feedback from the environment to maximise a reward. The use of Reinforcement Learning algorithms has gained prominence for the purpose of training agents to navigate complex environments, especially those in which the desired outcome is clear but the optimal action sequence is uncertain. 
+%note: Goal of the agent is the optimise its policy to maximise cumulative reward
+
+A novel development in the reinforcement learning paradigm has been the application of an approach known to be effective in human education, %(since the 16th century?)%
+the use of curricula; the employment of which spawned the reinforcement learning sub-field of curriculum learning. Curriculum learning at its core is about gradually and appropriately increasing the difficulty of the environment and ensuing tasks provided to the agent such that the model is optimally challenged, similarly to the way in which a human agent (student) is taught and assessed. For example, a student would be taught and assessed on arithmetic before algebra. 
+
+%Matteo Comment: Focus on describing the subject of the project. Why is it important, why are we looking into CL? What do we want to find out?%
+
+Our hypothesis follows that, in our exploration of this concept, we will observe a substantial increase in agent performance in comparison to that of traditional reinforcement learning - where the agent is challenged at maximum complexity throughout. 
+
+This chapter will discuss aims and objectives of the project, deliverables, planning and risk mitigation, as well as the general structure of the report.   
+%Our exploration of this involves the comparison of the agent's performance against the traditional reinforcement learning approach, where the agent is challenged at maximum complexity throughout, along with between curriculum learning approaches that employ varying progression functions - that is ways of determining when the agent should progress to the next task \cite{misc01}.%
+
+\section{Aims}
+\label{sec:aims}
+The main aim of this project is to confirm the hypothesis above, assessing the merits in performance of its use in comparison to the standard Reinforcement Learning approach. Here, agent performance is measurable as the number of time-steps taken to learn the final task, moreover what degree of success this final model achieves in the environment at maximum complexity. Through the substantiation of this hypothesis we hope to highlight the significance of curriculum learning as a pivotal conception in the evolution of the field of reinforcement learning as a whole. 
+This will be accomplished by running experiments within the environment we develop $-$ quantifying the difference in speed to convergence observed, and through the subsequent %qualitative \texttt{quantitative?}% 
+evaluation of its comparative optimality.
+
+Furthermore, we aim to provide an appraisal of various modes of curriculum generation across environments of increasing complexity. To this end, a hierarchy will be established from the divergence in outcomes exhibited by fixed and adaptive progression functions. Where a progression function is "for calculating the complexity of the task given to the agent at any time”, and therefore can be considered to be the generator of the curriculum \cite{misc01}.
+
+
+\section{Objectives}
+
+%Matteo Comment: too many objectives. These are not milestones, but what you want to achieve overall. You need 2 or 3 measurable objectives that you can demonstrate have been achieved by the end. Formulate some sort of hypothesis that will inform the experiments, for instance learning through the curriculum requires fewer actions to learn the final task than learning it from scratch.
+% implement an agent and a curriculum generation method to learn a complex task through curriculum learning
+%evaluate whether curriculum learning allows the agent to learn the final task in fewer steps than from scratch.
+\begin{itemize}
+    \item Implement an environment-appropriate agent that is capable of learning a complex task utilising a curriculum learning approach.
+    \item Implement various curriculum generation methods and evaluate the comparative performance between them.
+    \item Demonstrate the value of curriculum learning techniques within this environment via the juxtaposition of their performance versus the traditional reinforcement learning approach.
+    
+    %\item Implement a curriculum generation method and an environment-appropriate agent that is capable of learning a complex task utilising a curriculum learning approach.
+    %\item Implement a curriculum generation method 
+    % \item Demonstrate the value of curriculum learning techniques within this environment, and therefore generally, via the comparative evaluation of the time taken to convergence between methods 
+%- does the agent learn the final task in fewer aggregate time-steps with curriculum learning compared to the traditional reinforcement learning approach?%
+    %\item Demonstrate the value of curriculum learning techniques within this environment via comparing
+    %the performance of curriculum learning versus the traditional reinforcement learning approach.
+
+
+
+%Below commented out as doesn't fit what matteo said.
+\comment{
+    \item Define the overall action space of the agent considering all the different environments, to be constricted dynamically at the different levels of environment complexity. 
+    \item Devise multiple behaviours (fixed sequence of actions) for the opposition agent at various difficulties within each environment.
+    \item Develop a progression function to determine when the difficulty for the opposition agents’ behaviour, within a fixed environment, should change and by how much.
+    \item Train the agent against the different environments and opposition agent behaviours. 
+    \item Develop a mapping function to ascertain when the complexity of the environment should increase and by how much.
+    \item Create multiple different environments with differing levels of complexity.
+    \item Evaluate the performance of the progression function and the curriculum generation (mapping function). 
+    \item Quantify how the curriculum learning approach compares to the already implemented reinforcement learning approach.
+}
+
+
+
+\end{itemize}
+
+\section{Deliverables}
+%Matteo Comment: A deliverable is an object you deliver. The report, the code, a video, not what is in the report%
+The material that will be delivered by the end of the project is the following: 
+\begin{itemize}
+    \item A comprehensive report detailing the research undertaken, the implementation achieved and the subsequent analysis of the results generated, along with an evaluation of this.
+    \item A git repository containing code for the environments and training. 
+\comment{
+    \item Demonstration of the performance of our optimal agent
+    \item Documented visual evidence of different environments in the report. 
+    \item Description of the progression function and how it works. 
+    \item Description of the mapping function and its features.
+    \item Documented proof of training the agents and the outcomes of their acting in environments of a range of complexities. 
+    \item A quantitative study of the performance of the agents. 
+    \item A quantitative study between the performance of this curriculum learning approach and the already implemented reinforcement learning approach. 
+}
+\end{itemize}
+
+\section{Project Plan}
+% Initial Plan \\
+% $[$some type of Gantt chart$]$ or\\
+% (Can explain in phases alternatively) with Chronological Ordering of Tasks
+The Project Plan can be split into phases, with some overlap in timing:
+\begin{enumerate}
+    \item Planning
+    \item Experimentation
+    \item Background Research
+    \item Implementation
+    \item Analysis of results
+    \item Evaluation
+    \item Finalisation of Report
+\end{enumerate}
+
+\section{Project Methodology}
+The project will follow an Agile approach. The requirements will constantly evolve throughout the project, and by adapting an iterative approach we can ensure that we are flexible and able to meet new requirements. A backlog will be maintained, with priorities assigned to each item, such that the most important components take precedence. We aim to run the ubiquitous two-week sprints, however this is flexible and can be adjusted as necessary.
+
+\comment{
+\section{Risk Mitigation Strategy}
+**Incomplete**\\
+\begin{itemize}
+    \item Research varied and relevant
+    % \item Time spent wisely (lol)
+    \item Avoiding plagiarism by writing our own code and asking explicit permission when using others code as is (Andrea’s permission)
+\end{itemize}
+}
+
+\section{Structure of the Report}
+The structure of the report is roughly as follows: 
+\\Chapter 1: A brief introduction giving an overview of the project.
+\\Chapter 2: Background Research into all related topics
+\\Chapter 3: Implementation Details specific to the project including dependencies and environment specifics.
+\\Chapter 4: Analysis of our results in comparison to traditional approaches
+\\Chapter 5: Evaluation of our methodology and implementation and the conclusions we have reached
+

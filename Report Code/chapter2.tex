@@ -1,0 +1,471 @@
+\chapter{Background Research}
+This chapter details the research we have undertaken for the project in order to make the problem more clear and formalised. It also contains state of the art methods that may be useful in this project and a brief explanation on any terminology that we used in this report.
+
+
+\section{Machine Learning}
+
+Artificial Intelligence is an exceedingly popular field in computing currently and comprises three forms: weak artificial intelligence, strong intelligence and super artificial intelligence. Machine Learning is the main representative of weak intelligence. The first definition of machine learning was cognitive computing, a field of study that allows computers to learn without explicit programming, as specified by Arthur Samuel (1959) of IBM in his research paper \cite{5392560}. However %although accurate% 
+this definition is somewhat vague, and the term was later re-defined more specifically by Tom Mitchell: "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E" \cite{whatisml}. Principally, machine learning refers to an advanced computing technique which allows computers to seek and extract knowledge from a sea of data. It could be regarded as an evolution of typical computer programming. \\Broadly the purpose of this is to discover the features of the training data-set provided to the model, as to facilitate accurate predictions on future provided data - usually that of a similar structure. This is especially important when applied to large data-sets, as often such a model is able to uncover characteristics that no human agent could reasonably comprehend. 
+In order to ensure that the features extracted from the provided data are accurate, it is essential that the appropriate machine learning methodology is applied. This, as determined by the structure of the provided training data; be that labelled examples in the case of supervised learning, unlabelled examples in unsupervised learning, or Markov decision processes for reinforcement learning. These can be considered as the three main machine learning paradigms, and are described in the following sections of this report.
+%Basically, machine learning methods help machines to achieve the definition we talked above. It is mainly classified as supervised and unsupervised. They are used in different situations.%
+
+
+% (provided resources:
+% 1 https://www.expert.ai/blog/machine-learning-definition/ Expert.ai Team - 6 May 2020, accessed on 20/04/20201
+% 2 Samuel, A.L. (1959). Some Studies in MachineLearning Using the Game of Checkers. IBM Journal of research and development, 3(3), 210-229.
+% 3 Das, C (2017). What is machine learning and types of machine learning --Part-1. Available on: https://towardsdatascience.com/what-is-machine-learning-and-types-of-machine-learning-andrews-machine-learning-part-1-9cd9755bc647
+% )
+\comment{
+\subsection{Supervised Learning}
+Supervised learning, as mentioned above, is one of the main machine learning methods used today. The model is provided with labelled training data upon which to train, that is data consisting of example instances of input-output pairs - for each input vector of the training data, the desired answer is also provided. Once trained, the model can use the function that it infers in order to predict the output of future, unlabelled, inputs \cite{expertmldef}. Setting a goal for training is essential in supervised learning, such as successfully categorising inputs by certain rules or predicting outputs above a certain accuracy. 
+\\There is a general process of training:
+\begin{enumerate}
+    \item Choosing a suitable mathematical model for the target task
+    \item Providing a labelled training set for the machine to learn from
+    \item Training the model to generate a suitable “policy” 
+    \item Providing an unlabelled test set for the machine to evaluate this policy
+\end{enumerate}
+Furthermore there are two primary tasks in supervised learning, regression and classification. Regression is used to predict continuous and specific values. For instance, learning to arbitrate the sale price of a house given a training set of past sales records - including price and location data of other houses.
+On the other hand, classification is used to predict non-continuous and discrete values for binary classification problems. Generally, supervised learning should derive out a prediction function from labelled training data. %Input and expected result should be included in each training instance in the labelled training data.%
+
+
+\subsection{Unsupervised Learning}
+Unsupervised learning differs from supervised most obviously in that the training data that it is provided is always unlabelled. Thus there is no way for the system to discern what the 'correct' output should be, rather the aim is to find patterns hidden within training data and assemble similar instances into various clusters \cite{expertmldef}. Despite their differences, and indeed because of them, they are sometimes used in tandem. It contains three main characteristics:
+\begin{enumerate}
+    \item There is no specified target
+    \item Training data is unlabelled
+    \item Results cannot be quantified
+\end{enumerate}
+Moreover, for unsupervised learning, segmentation and network analysis are the main tasks. In segmentation, structures are learnt that allow containing clusters with similar examples. But in network analysis, structures to learn are related to the information about the importance and role of nodes in the network.
+Generally, the goal of it is to get a conclusion from unlabelled training data. It is essentially a statistical training method to find out some potential structures from unlabelled training data.
+\\**(should provide some cases to distinguish it with supervised learning)**
+}
+
+\section{Reinforcement Learning}
+%Matteo Comment: This is the time to define agent, reward, etc. DONE in 2.2.1
+%An equation of the value function wouldn't hurt either. Describe the algorithms you used to learn%
+
+The Reinforcement Learning (RL) paradigm, which exists between supervised and unsupervised learning, consists of learning within sequential decision making problems in which feedback is limited \cite{book02}.  There are several standard terminologies within the field including Agent: the entity that takes actions, Environment: the space in which the agent performs the actions, Reward: Each action produces a reward, positive or negative, with which the agent aims to maximise the cumulative reward, known as Expected Return. \\Generally, an agent is able to survey its environment and from this decide upon the course of action that it needs to take in order to reach the desired goal. “Although the designer sets the reward policy $-$ that is, the rules of the game $-$ he gives the model no hints or suggestions for how to solve the game” \cite{2018RLGuide}. For model-free algorithms, characterised in section 2.2.3, an agent can perform actions and receive immediate reward, but they are not told which actions to take, nor their consequences - they must deduce this through trial and error. A choice is made between potential actions based on their expected reward value as perceived by the agent across prior instantiations of the environment $-$ the goal of the agent is to maximise the total reward value accumulated by the end of the simulation. 
+
+\\The agent-environment interaction defines a task. There are two types of reinforcement learning task, either the task takes a finite amount of time and has a set number of terminal states - an episodic task, or it lasts forever - a continuous task \cite{book01}.
+
+% \xout{There are four elements that are always mentioned when we discuss a reinforcement learning method: a policy, a reward function, a value function, and a model of the environment.
+
+% Policy
+
+% Reward  signal
+
+% Value function
+
+% Model of the environment}
+\comment{
+Reinforcement learning is different from supervised learning. In supervised learning, a training-set of examples given by a knowledgeable supervisor to the machine. Each example is a pair consisting of an input object and a desired output object. The object of this learning is to infer a mapping function from the input to the output, and apply it to predict the output value for a new input value that is not presented in the training set. This kind of learning is not suitable in an interactive environment as it is often impractical to obtain all the situations and the correct actions which the agent has to act. The best way to do that is to learn from experience.
+
+Reinforcement learning is also different from unsupervised learning. In unsupervised learning, the machine is searching for hidden structure from unlabelled data. Although some may think reinforcement learning is a kind of unsupervised learning as both do not rely on a training set of examples, reinforcement learning is trying to maximise reward it accumulates instead of searching for hidden patterns. Finding hidden patterns may be useful in reinforcement learning, but it does not mean it can relate to the problem of maximising reward \cite{book01}.
+
+}
+\subsection{Markov Decision Processes}
+\comment{As discussed in the previous section, the reinforcement learning problem is how a learning agent can interact with its environment to achieve a goal. The agent looks at its situation and decides the actions it takes. The environment responds to the actions and presents a new situation to the agent with the rewards which the agent tries to maximise.
+}
+A reinforcement learning task can be formalised as a Markov Decision Process (MDP). A MDP is a stochastic decision process in which the next state and reward depend only on the current state. For this report, we solely look at episodic MDPs \cite{curriculum-matteo}.
+
+An episodic MDP is a 6-tuple $(S,A,p,r,S_{0},S_{f})$, where $S$ is the set of states, $A$ is the set of possible actions, $p$ is the transition function $p(s'|s,a)$ which gives the probability of the next state $s'$ will be transitioned into, given that action $a$ is taken in state $s$. $r(s,a,s')$ is the reward function which gives out the expected reward when taking action $a$ in state $s$ and transitioning into state $s'$.(needs to paraphrase)
+
+$S_{0}$ is the set of initial states and $S_{f}$ is the set of terminal states.
+
+\\Agents take actions by passing the environment its current state and action, which returns a new state and reward. The choice of action is determined by the policy. A policy is essentially the agents strategy, and can be defined formally as $\pi : S \times A \rightarrow \left [ 0,1 \right ]$. For each state $s\in S, \pi$ is the probability distribution over $a\in A(s)$. This means that if an agent follows policy $\pi$ at timestep $t$, then $\pi(a|s)$ is the probability that $A_{t}=a$ if $S_{t}=s$. The goal of the agent is to find optimal policy $\pi^\star$ such that it maximises cumulative reward.
+
+
+
+\subsection{Current State of Reinforcement Learning}
+Many different areas of research exist within the reinforcement learning community. One such area, the playing of games, has long been a focus of research; with many notable achievements occurring in the last decade. Board games are commonly used within this domain, and their use can be traced back to 1956 when Arthur Samuel demonstrated a machines' ability to learn the game of Checkers \cite{samuel_1959}. Games are naturally suited for reinforcement learning since they embody a set of rules within which an agent can be trained, or that can be learned if starting tabula rasa, and from each game state manifest many potential series of moves which eventually lead to a reward for the player - generally either winning or losing. Furthermore, since this reward is generally not provided to the agent until the end of the game, they promote the inception of long-term strategy. Models can be trained against human players initially in order for the agent to learn the basic mechanics of the game, and then subsequently against separate instances of themselves allowing for increasingly rapid development of strategy and technique.
+\\In 2016 a significant milestone was achieved in that AlphaGo, a computer Go agent developed by Google DeepMind, defeated an 18-time world champion Go player, becoming the first ever such program to do so \cite{deepmind}. At the time, such a feat was thought by many experts to be at least a decade from fruition. Go can be considered a simple game due to having few rules, however the incomprehensible size of its search space had made it an intractable problem for traditional AI approaches - with the search space being approximately \begin{math}10^{170}\end{math}, a number greater than the number of atoms in the Universe \cite{silver_hassabis_2016} \cite{müller_2002} - highlighting the significance of the achievement. Since 2016, DeepMind have developed new iterations, each better than its predecessor, with the latest spawning a general reinforcement learning algorithm, named AlphaZero, which achieves superhuman performance in many different games \cite{general_2018}.
+\\Deep reinforcement learning is a combination of deep learning and reinforcement learning, and is the driver behind AlphaZero and many other successful game playing programs. General algorithms show promise in many different applications. OpenAI Five, originally developed to beat human players in Dota 2, has been used to teach a robot hand dexterity. More impressively is that the training for this was performed across simulations, before being transferred to real world application successfully \cite{openai_learning_2018}. Future work is likely to use this approach, since reinforcement learning alone struggles to deal with the high-dimensional MDP states which are required to represent many increasingly complex real-world problems.
+%Either 'many of the increasingly complex real-world problems' or 'many increasingly complex problems'
+
+\subsection{Reinforcement Learning Algorithms}
+%before
+
+% Reinforcement learning algorithms can be categorised based on the algorithm being model-based or model-free, which can be seen in Fig.~\ref{fig:rl-taxonomy} \cite{rl_hierarchy_source}. Model-based algorithms have explicit models of the environment which consist of the transition and reward function. This model can be used to provide predictions about the dynamics of the environment to the agent. The agent can use these predictions to plan ahead, learning optimal policy indirectly. This model can be explicitly programmed, such as the rules of Chess, or it can be learned whilst the agent interacts with the environment. If the model is available, then algorithms outperform those without a model significantly, as seen with AlphaZero \cite{general_2018}. Typically, the ground-truth representation of the environment is not available, and so the agent is provided with an approximation of the model. In this case, it is possible the optimal policy may never be found. Models may also be biased, which can result in the agent performing well within the learning environment, but poorly in the real environment.
+% \\Model-free algorithms learn the optimal policy by adopting a trial and error approach. The algorithms possess no information about the dynamics of the environment, and so learn the optimal policy directly through experience, which is gained by taking actions.
+
+
+%What Colin wrote
+
+% %This section mainly demonstrates the current exiting algorithms to help reinforcement learning. The current existing algorithms can be classified with model-free, model-based, on-policy and off-policy. The model in model-based algorithms refers to the dynamic simulation of environment.
+% To be specific, the model can learn the transition possibility T from the current state s0 and action a to next state s1 (T(s1|s0,a)). When the model learns the transition possibility successfully, the agent knows the probability of entering a specified state with the information of the current state and action. However, model-based is impractical if both of the state space and action space grow. 
+% %For the model-free algorithms, they rely on trials and errors for knowledge update. %
+% Hence, the space for storing all the combinations of action and state is not essential. It is better to choose model-free algorithms for reinforcement learning. 
+% The main difference of on-policy and off-policy algorithms is that the agent of on-policy algorithm is based on the learning value of current action A, but it is based on the learning value of the local optimal greedy action A for off-policy algorithm. %
+
+
+%New
+Reinforcement learning algorithms can be categorised based on the algorithm being model-based or model-free, which can be seen in Fig.~\ref{fig:rl-taxonomy} \cite{rl_hierarchy_source}. Model-based algorithms have explicit models of the environment which consist of the transition and reward function. To be specific, the model can learn the transition possibility T from the current state s0 and action a to next state s1 (T(s1|s0,a)). When the model learns the transition possibility successfully, the agent knows the probability of entering a specified state from the information about the current state and action. This model can be used to provide predictions about the dynamics of the environment to the agent and the agent can use these predictions to plan ahead, learning optimal policy indirectly. This model can be explicitly programmed, such as the rules of Chess, or it can learn whilst the agent interacts with the environment. If the model is available, then algorithms outperform those without a model significantly, as seen with AlphaZero \cite{general_2018}. Typically, the ground-truth representation of the environment is not available, and so the agent is provided with an approximation of the model. In this case, it is possible the optimal policy may never be found. Models may also be biased, which can result in the agent performing well within the learning environment, but poorly in the real environment.
+\\However, model-based becomes impractical as both of the state space and action space grow. Model-free algorithms learn the optimal policy by adopting a trial and error approach. The algorithms possess no information about the dynamics of the environment, and so learn the optimal policy directly through experience, which is gained by taking actions. Hence, the space for storing all the combinations of action and state is not essential. It is better to choose model-free algorithms for reinforcement learning. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 1\textwidth]{Images/hierarchy.PNG} % enter the filename here
+		\caption{A taxonomy of reinforcement learning algorithms \cite{rl_hierarchy_source}} % enter the figure caption here
+		\label{fig:rl-taxonomy} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+\\Reinforcement learning algorithms can also classified as on-policy and off-policy, the main difference between which is that the agent policy of on-policy algorithm updates based on the reward value of current action A, while it updates independently from the action taken, usually based on the reward value of the local optimal greedy action A, for an off-policy algorithm.
+
+The optimisation is performed off-policy in Q-learning, which means that the training data utilised can be the data at any time during the training process \cite{rl_hierarchy_source}. Q-learning is based on Bellman Equation. The figure shows the Bellman expectation equation, where E represents expectation and is the discount factor.
+\[ v \left( s \right) = \in  \left[ R_{t+1}+ \gamma v \left( S_{t+1} \right)  \vert S_{t}=s \right] \cite{bellman-equation} \] 
+In Q-learning, Q is action-utility function, that is used to evaluate which action to take from a certain state. After learning, a Q-table should be generated, which is storing every state and action. The largest expected reward can be found from the optimal actions in each state throughout the Q table. The figure below shows the Bellman optimality equation to find Q value.
+\[ Q^{\ast} \left( s,a \right) = \in  \left[ r_{t+1}+ \gamma \max _{a^{'}}Q^{\ast} \left( s_{t+1},a^{'} \right)  \vert s_{t}=s, a_{t}=a \right] \cite{bellman-optimality} \] 
+%fig 3 Bellman optimality equation for Q*
+The optimisation is performed on-policy in Policy optimisation, which means the data generated by the latest policy is used when the policy is updated each time \cite{rl_hierarchy_source}.
+
+\subsubsection{Proximal Policy Optimisation}
+
+\label{subsubsec:PPO}
+%Colin wrote:
+The proximal policy optimisation algorithm is one improved from the policy gradient, an algorithm based on policy iteration. It directly collates the states, with the actions and their rewards, required in order to achieve to maximum expected cumulative reward. According to the documents of OpenAI, policy gradient algorithm is to "push up the probabilities of actions that lead to higher return, and push down the probabilities of actions that lead to lower return, until you arrive at the optimal policy" \cite{vpg_spin}. The equation of gradient policy is deduced as:
+ \[ \triangledown \overline{R_{ \theta }}=\frac{1}{N} \sum _{n=1}^{N} \sum _{t=1}^{T_{n}}R \left( T^{n} \right) \triangledown logp \left( a_{t} \vert s_{t}, \theta  \right)  \] 
+Firstly, we define \( T \) as the sum of one single round, as \( T=s_{1},a_{1},r_{1}, \ldots ,s_{T},a_{T},r_{T} \) . 
+\\Therefore,  \( R \left( T \right)  \)  is the sum of rewards, as  \( R \left( T \right) = \sum _{t=1}^{T}r_{t} \) . 
+\\To maximize it,  \( \overline{R_{ \theta }}= \sum _{T}^{}R \left( T \right) P \left( T \vert  \theta  \right)  \approx \frac{1}{N} \sum _{n=1}^{N}R \left( T^{n} \right)  \)  can be deduced. 
+\\Now, seeking gradient of  \( \overline{R_{ \theta }} \)  , an equation of  \( \triangledown \overline{R_{ \theta }} \)  can be found as:
+\[ \triangledown \overline{R_{ \theta }}= \sum _{T}^{}R \left( T \right) P \left( T \vert   \theta  \right)  \cdot \frac{\triangledown P \left( T \vert   \theta  \right) }{P \left( T \vert   \theta  \right) }= \sum _{T}^{}R \left( T \right) P \left( T \vert   \theta  \right)  \cdot \triangledown logP \left( T \vert  \theta  \right)  \approx \frac{1}{N} \sum _{n=1}^{N}R \left( T^{n} \right)  \cdot \triangledown logP \left( T^{n} \vert  \theta  \right)  \] 
+and  \( P \left( T^{n} \vert  \theta  \right)  \)  can\ be expanded as the following equation:  
+ \[ \text{~~~~~~~~~~~~ P} \left( T^{n} \vert   \theta  \right) =p \left( s_{1} \right) p \left( a_{1} \vert  s_{1}, \theta  \right) p \left( r_{1},s_{2} \vert  s_{1},a_{1} \right) p \left( a_{2} \vert  s_{2}, \theta  \right)  \ldots p \left( a_{t} \vert  s_{t}, \theta  \right) p \left( r_{t},s_{t+1} \vert  s_{t},a_{t} \right) \] \[=p \left( s_{1} \right)  \prod_{t}^{}p \left( a_{t} \vert  s_{t}, \theta  \right) p \left( r_{t},s_{t+1} \vert  s_{t},a_{t} \right)  \] 
+Then putting the equation into  \( \triangledown logP \left( T^{n} \vert  \theta  \right)  \) :\\
+ \[ \triangledown \log P \left( T^{n} \vert   \theta  \right) =\triangledown \log  \left( P \left( s_{1} \right)  \prod_{t}^{}p \left( a_{t} \vert  s_{t}, \theta  \right) p \left( r_{t},s_{t+1} \vert  s_{t},a_{t} \right)  \right)  \] \[ = \triangledown \log p \left( s_{1} \right) + \sum _{t=1}^{T}\triangledown \log p \left( a_{t} \vert  s_{t}, \theta  \right) + \sum _{t=1}^{T}\triangledown lp \left( r_{t},s_{t+1} \vert  s_{t},a_{t} \right) \]
+ \[=  \sum _{t=1}^{T}\triangledown \log p \left( a_{t} \vert  s_{t}, \theta  \right)  \] 
+% \\∇logP(T^n│θ)=∇ log⁡〖(P(s_1 ) ∏_t▒〖p(a_t│s_t,θ)p(rt,s(t+1)│s_t 〖,a〗_t ) 〗)=∇logp(s1 )+∑(t=1)^T▒〖∇logp(a_t│st,θ)+〗〗 ∑(t=1)^T▒〖∇lp(rt,s(t+1)│s_t,at )= 〗 ∑(t=1)^T▒〖∇logp(a_t│s_t,θ) 〗
+%https://cdn.discordapp.com/attachments/330476686141554700/836487194204962866/unknown.png
+Finally, 
+\[ \triangledown \overline{R_{ \theta }} \approx \frac{1}{N} \sum _{N}^{1}R \left( r^{n} \right)  \cdot \triangledown logP \left( t^{n} \vert   \theta  \right) \]\[=\frac{1}{N} \sum _{n=1}^{1}R \left( r^{n} \right)  \sum _{t=1}^{T_{n}}\triangledown logp \left( a_{t} \vert  s_{t}, \theta  \right) \]\[=\frac{1}{N} \sum _{n=1}^{1} \sum _{t=1}^{T_{n}}R \left( r^{n} \right) \triangledown logp \left( a_{t} \vert  s_{t}, \theta  \right)  \] 
+Essentially,  \( R \left( T^{n} \right)  \)  is multiplied with the minimized cross entropy of the actions of sampling N rounds and actions of network output, and the reward value is the gradient descent now. However, we still can improve it for each state and operation of the tuple, therefore,  \( R \left( T^{n} \right)  \)  should be substituted as the following:
+ \[ R \left( T^{n} \right)  \rightarrow  \sum _{t=t^{'}}^{T_{n}} \gamma ^{t}r_{t}^{n} \] 
+And  \( \triangledown \overline{R_{ \theta }} \)  changed as well as:
+ \[ \triangledown \overline{R_{ \theta }}=\frac{1}{N} \sum _{n=1}^{N} \sum _{t=1}^{T_{n}} \sum _{t^{'}}^{T_{n}} \gamma ^{t}r_{t}^{n}\triangledown logp \left( a_{t} \vert  s_{t}, \theta  \right)  \]  
+\\There still exists an overestimation problem. The state-action sampling is insufficient in practice, which means that some actions or states would not be sampled. When gradient descent training is in process, these actions or states would be zoomed in or out extremely. To improve it, we can input baseline. It would be a constant hyper-parameter to be adjusted, also known as Critic, which is a network waiting to be trained. 
+\\If critic is used, this model is called Actor-Critic Model and  \( \triangledown \overline{R_{ \theta }} \)  changed as:
+ \[ \triangledown \overline{R_{ \theta }}=\frac{1}{N} \sum _{n=1}^{N} \sum _{t=1}^{T_{n}}A^{ \theta } \left( a_{t} \vert  s_{t} \right) \triangledown logp \left( a_{t} \vert  s_{t}, \theta  \right)  \]  
+However, the parameter updating of policy gradient is slow because re-sampling is needed every time the parameters are updated. To improve the training speed and efficiently use the sampled data, we do importance sampling to change the on-policy training process to off-policy. Importance sampling is the transformation process from on-policy to off-policy. Assume we have a continuous random variable  \( x \) , and the probability density function of it is  \( p \left( x \right)  \) , the expectation of  \( f \left( x \right)  \)  calculated by the following equation:
+ \[ E_{x \sim p} \left[ f \left( x \right)  \right] = \int _{}^{}f \left( x \right) p \left( x \right) dx \] 
+If there is another probability density function  \( q \left( x \right)  \) . It has such relationship with the above equation:
+ \[ E_{x \sim p} \left[ f \left( x \right)  \right] = \int _{}^{}f \left( x \right)  \cdot p \left( x \right) dx=  \int _{}^{}f \left( x \right) \frac{p \left( x \right) }{q \left( x \right) } \cdot q \left( x \right) dx=E_{x \sim p} \left[ f \left( x \right) \frac{p \left( x \right) }{q \left( x \right) } \right] ~ \] 
+ \( \frac{p \left( x \right) }{q \left( x \right) } \)  is the importance weight. In the case of  \( \triangledown \overline{R_{ \theta }} \)  ,  \( f \left( x \right)  \)  is  \( A^{ \theta } \left( a_{t} \vert s_{t} \right)  \) , and  \( \frac{p \left( x \right) }{q \left( x \right) } \)  is the ratio of the probability of the current action taken in current state between new and old policy. Therefore, in the case of sufficient sampling, the equation should be: 
+ \[ E_{x \sim p} \left[ f \left( x \right)  \right] =E_{x \sim p} \left[ f \left( x \right) \frac{p \left( x \right) }{q \left( x \right) } \right]  \] 
+Since importance sampling provides the transform of training process from on-policy to off-policy, it is possible to sampling sufficiently from old policy  \( q \left( x \right)  \)  and improve the new policy  \( p \left( x \right)  \)  afterward. This process can be repeated N times in one round. This greatly reduces the time of sampling state-action-reward tuple in original policy gradient algorithm. Finally, the gradient of the average reward value for N rounds is changed as well, the new  \( \triangledown \overline{R_{ \theta }} \)  is:
+ \[ \triangledown \overline{R_{ \theta }}=\frac{1}{N} \sum _{n=1}^{N} \sum _{t=1}^{T_{n}}\frac{p_{ \theta  \left( a_{t} \vert  s_{t} \right) }}{p_{ \theta ^{'} \left( a_{t} \vert  s_{t} \right) }}A^{ \theta } \left( a_{t} \vert  s_{t} \right) \triangledown logp \left( a_{t} \vert  s_{t}, \theta  \right)  \] 
+ In practice, there exists a clip on  \( \frac{p_{ \theta } \left( a_{t} \vert s_{t} \right) }{p_{ \theta }' \left( a_{t} \vert s_{t} \right) } \)  :
+  \[ clip \left( \frac{p_{ \theta  \left( a_{t} \vert  s_{t} \right) }}{p_{ \theta ^{'} \left( a_{t} \vert  s_{t} \right) }},1- \epsilon ,1+ \epsilon  \right)  \] 
+  , where  \(  \epsilon  \)  is adjustable hyperparameter.
+
+Generally, PPO relies on "specialized clipping in the objective function to remove incentives for the new policy to get far from the old policy" \cite{ppo_spin}. It controls the ratio of the new and old policy  \( r_{t} \left(  \theta  \right)  \)  to prevent the impact on the learning effect of agent by the changes of updating. Clip can limit the ratio  \( r_{t} \left(  \theta  \right)  \)  between  \(  \left( 1- \epsilon , 1+ \epsilon  \right)  \) . 
+\\When the advantage is positive,  \( \hat{A}_{t}>0 \) , the current policy is better, optimization can be intensified. If  \( r_{t} \left(  \theta  \right) >1- \epsilon  \) , clip will still be  \( 1- \epsilon  \)  to prevent over-optimization. 
+\\When the advantage is negative,  \( \hat{A}_{t}<0 \) , the current policy is worse, optimization should be reduced. If  \( r_{t} \left(  \theta  \right) <1- \epsilon  \) , clip will still be  \( 1- \epsilon  \)  , but the Min function would still choose smaller value for  \( r_{t} \left(  \theta  \right)  \) .  
+
+\comment{sources for above:
+    1. OpenAI Spinning Up, Part2: Kinds of RL algorithms, Available on: https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#citations-below
+    2. OpenAI Spinning Up, Proximal Policy Optimization, Available on: https://spinningup.openai.com/en/latest/algorithms/ppo.html
+    3. OpenAI Spining UP, Vanilla Policy Gradient, Available on: https://spinningup.openai.com/en/latest/algorithms/vpg.html
+    4. Proximal Policy Optimization (PPO), Zhihu, Available on: https://zhuanlan.zhihu.com/p/62654423 (This is a blog)
+
+Figure 1: John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, Oleg Klimov (2017), Proximal Policy Optimization Algorithms. Available on: https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#citations-below
+
+Figure 2: Barnabás Póczos, Introduction to Machine Learning, Available on: https://www.cs.cmu.edu/~mgormley/courses/10601-s17/slides/lecture26-ri.pdf 
+
+Figure 3: Blackburn, Reinforcement Learning: Bellman Equation and Optimality (Part2), Available on: https://towardsdatascience.com/reinforcement-learning-markov-decision-process-part-2-96837c936ec3}
+
+\comment{
+\subsubsection{Trust Region Policy Optimisation}
+**Incomplete**
+
+\subsubsection{Soft Actor-Critic}
+**Incomplete**
+-http://incompleteideas.net/book/first/ebook/node66.html
+}
+
+\section{Transfer Learning}
+%Matteo Comment: This can stay%
+\\Transfer learning %is a technique within machine learning that %
+refers to notion of the reuse of a model developed and trained to solve one task in order to solve another similar, yet distinct, task. To be more specific, according to the research of deep learning by Ian Goodfellow in 2016 \cite{goodfellow2016deep}, "transfer learning and domain adaptation refer to the knowledge learned in one environment being used in another domain to improve its generalisation performance". Therefore, transfer learning is not a form of classic machine learning; it is rather more related to multiple-task learning and concept drift. Its use is prevalent in solving deep learning problems, for example, in the case of training a deep model that requires a large number of data sets for pre-training.  
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 1\textwidth]{Images/difference-tradml-transfer.png} % enter the filename here
+		\caption{The difference between traditional machine learning and transfer learning} % enter the figure caption here
+		\label{fig:difference-tradml-transfer} % enter the figure label here (for cross referencing)
+		%\url{Pan, S. J., & Yang, Q. (2010). A survey on transfer learning. IEEE Transactions on Knowledge and Data Engineering, 22(10), page[2.]}
+	\end{center}
+\end{figure}
+
+The Fig.~\ref{fig:difference-tradml-transfer} demonstrates the difference between traditional machine learning and transfer learning. For traditional machine learning, there are multiple learning systems generated during the learning process %of traditional machine learning%
+since the tasks are interpreted separately. However, the knowledge accumulated in some elemental tasks should be put into practice as a basis for the current learning task in transfer learning.
+%However, the knowledge learned from the first few tasks should be transferred into the current learning task and assembled together at the final stage in transfer learning.%
+
+Furthermore, transfer learning can be used within reinforcement learning to improve performance. Reinforcement learning is based on environmental feedback, as delineated in section 2.2, and there are two main disadvantages to this. One is that when state-action space (SxA) of reinforcement learning is large, the searching process for seeking the optimal strategy is highly time-consuming. The other drawback is that the cost of retraining the agent is huge when failure occurs on the previous learning stage, which is often due to changes in the problem-space. To improve reinforcement learning, transferring knowledge from the source task to the target task could be invaluable, and this is a key concept used to build the idea of curriculum learning from reinforcement learning. 
+\\The improvement of learning speed is just one thing which transferring learning can achieve \cite{taylor2009transfer}.
+The complexity of a learning activity can be derived from the amount of episodes necessary for the model to achieve the desired performance. There are plenty of ways to measure the improvement of learning speed including the time to convergence to some threshold and also ratio of area. To be more specific, we can observe the effect of transfer learning within a domain by setting a threshold of policy transition and monitoring the amount of experiences needed for both a single-task and transfer learning algorithm to reach that threshold. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 1\textwidth]{Images/transfer-learning-in-cl.png} % enter the filename here
+		\caption{Three ways in which transfer learning is traditionally applied within reinforcement learning} % enter the figure caption here
+		\label{fig:transfer-learning-in-cl} % enter the figure label here (for cross referencing)
+		%\url{Lazaric A. Transfer in reinforcement learning: a framework and a survey[M]//Reinforcement Learning. Springer, Berlin, Heidelberg, 2012: page [6]}
+	\end{center}
+\end{figure}
+
+% What can be talked more in detail later:
+
+The three ways in which transfer learning is traditionally applied within reinforcement learning are shown in Fig.~\ref{fig:transfer-learning-in-cl}, and explained below \cite{lazaric2012transfer}: 
+% Describe setting: 
+\begin{itemize}
+\item Transfer from source task to target task with fixed domain
+    -- The fixed task domain is determined by the state-action (SxA), but the specific structure of the task and the target is decided by state transition model T and reward function R.
+\item Transfer across tasks with fixed domain
+    -- The tasks are sharing the same domain. The algorithm is taking the knowledge collected from a source task as input and using it to improve the performance in the target task.
+\item Transfer from source task to target with different state-action space
+    -- Tasks contain different state-action space, transfer methods would mainly focus on defining mapping between source state-action variable and the target variable to ensure effective transfer.
+\end{itemize}
+
+% Describe knowledge:
+% Instance transfer
+% Representation transfer
+% Parameter transfer
+
+% Describe objective:
+
+% Initial (JumpSatrt) promotion
+% Asymptotic ascent
+
+
+
+\section{Curriculum Learning}
+\label{sec:curriculum-learning}
+% Purpose of CL (why did it become a thing)
+
+% Define what is a curriculum
+
+% Define what is curriculum learning
+
+% Talk about the trends
+
+% Talk about role of task generation, sequencing, and transfer learning(may be subsection)
+
+
+Curriculum learning is an approach to reinforcement learning inspired by human development. In a human learning domain, when learning a new skill, whether a sport or musical instrument or an academic subject, the training process is structured to present new concepts and tasks in a sequence that leverages what has previously been learned. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{Images/chess-example.png} % enter the filename here
+		\caption{Figure~1 from paper \cite{curriculum-matteo} - 
+		"Different subgames in the game of Quick Chess,
+		which are used to form a curriculum for learning the full game of Chess."} % enter the figure caption here
+		\label{fig:chess-example} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.7\textwidth]{Images/bullseye-example.png} % enter the filename here
+		\caption{Archery targets with a stationary target, a horizontally moving target,
+		and a horizontally and vertically moving target respectively.} % enter the figure caption here
+		\label{fig:bullseye-example} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+
+Consider the example in Figure~1 from paper \cite{curriculum-matteo},
+repeated here in Fig.~\ref{fig:chess-example}.
+Quick chess is a game designed to introduce children to the game of full chess by exposing them to
+increasingly difficult subgames of chess. In the first subgame, the player learns how pawns move,
+promotions and taking opposition pieces. The second introduces a new piece, the king,
+as well as a new objective, to keep the king alive. Consecutive subgames introduce new elements,
+a larger board or a new piece for example, which require learning new skills and building upon
+what has already been learned before finally tackling the full game of chess.
+
+Consider also another example in Fig.~\ref{fig:bullseye-example}. Initially, the archer aims to hit the
+bulls-eye on a stationary target. The difficulty is then increased by introducing a new element, 
+horizontal motion and the archer now has to hit a moving target. Lastly, vertical motion is introduced, 
+and the archer has to hit a target which can move in two planes. Like in the example of quick chess, 
+new skills are acquired by building upon what has already been learned. However, unlike in quick chess, 
+here the objective of the archer is the same in all cases, but the change in the behaviour of the target 
+is what introduces differing levels of difficulty.
+
+Using curricula to train agents in reinforcement learning has been considered from the early 1990s 
+such as in the field of grammar learning \cite{elman1993learning} and robotics control problems
+\cite{sanger1994neural} as well as classification problems later on in 2009 \cite{bengio2009curriculum}. 
+Results showed that the order of training matters and generally, learning algorithms perform better 
+when training tasks are ordered in increasing difficulty. Overall, in curriculum learning, 
+starting from small and simple tasks and gradually increasing the difficulty can lead to more optimal 
+results within a task as well as faster convergence. Recent development in reinforcement learning has
+demonstrated how agents can utilise transfer learning \cite{lazaric2008transfer} \cite{taylor2007transfer} 
+to reuse knowledge acquired from a source task when attempting to learn a target task.
+
+The inspiration for a curriculum learning approach has been provided. Formal explanations are yet to be
+provided such as, what a curriculum is exactly and how tasks are generated. 
+There are many ways to define what a curriculum is, with the most basic definition being that a 
+curriculum is an ordering of tasks. Although, a curriculum does not necessarily 
+need to have a simple linear sequence. 
+A single task can build upon knowledge acquired from multiple source tasks similarly to how a course in 
+an academic subject may require multiple prerequisites.
+
+%Matteo Comment: These definitions are taken from the paper so they have to be cited%
+\textbf{Definition:} \emph{Curriculum}.
+Let $T$ be a set of tasks where $m_{i} = (S_{i}, A_{i}, p_{i}, r_{i})$ is a task in $T$, the tasks
+are modelled as MDPs.
+Let $D^{T}$ be the set of all possible transition tasks from tasks in $T$,
+$D^{T} = \{ (s,a,r,s') \: | \: \exists m_{i} \in T \mathr{\ s.t.\ } s \in S_{i}, a \in A_{i},
+s' \sim p_{i}(\cdot | s,a), r \leftarrow r_{i}(s,a,s')\}$.
+A curriculum $C = (V, E, g, T)$ is a directed acyclic graph, where $V$ is the set of vertices, 
+$E \subseteq \{ (x,y) \: | \: (x,y) \in V \times V \wedge x \neq y \}$ is the set of directed edges and 
+$g: V \rightarrow \mathcal{P}(D^T)$ is a mapping function which associates
+vertices of the graph to subsets of tasks in $D^{T}$, and $\mathcal{P}(D^T)$ is the power set of $D^{T}$. 
+A directed edge $(u,v)$ in $C$ implies that tasks associated with $u \in V$ should be trained on 
+before tasks associated with $v \in V$. All paths terminate on a single sink node $v_t \in V$
+\cite{curriculum-matteo}.
+
+\textbf{Definition:} \emph{Task-level curriculum}
+is a curriculum $C$ in which each vertex is associated with a single task in $T$. 
+Therefore, the mapping function is $g: V \rightarrow \{ T \}$. 
+In a task-level curriculum, the tasks form the nodes in the graph $C$ \cite{curriculum-matteo}.
+
+\textbf{Definition:} \emph{Sequence curriculum}
+is a curriculum $C$ where the indegree and outdegree of each vertex $v$ in the graph $C$ 
+is at most one with exactly one source node and one sink node \cite{curriculum-matteo}.
+
+Combining task-level and sequence simplification produces a task-level sequence curriculum.
+Such a curriculum can be represented as an ordered list of tasks $[m_{1}, m_{2}, \ldots , m_{n}]$. 
+An example of a task-level sequence curriculum as an acyclic graph can be seen in 
+Fig.~\ref{fig:task-level-seq-cl-graph}. A visual example is seen in Fig.~\ref{fig:bullseye-cl-graph}.
+Compare from the curriculum in Fig.~\ref{fig:bullseye-cl-graph-2}, in which the final task has two source
+tasks from which it can learn from and transfer knowledge from these two tasks. 
+The experimental setting in this paper uses a simplified task-level sequence curriculum explained in Section.~\ref{subsubsec:curriculum}.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.65\textwidth]{Images/curriculum-graph.png} % enter the filename here
+		\caption{A curriculum graph of a task-level sequence curriculum.} % enter the figure caption here
+		\label{fig:task-level-seq-cl-graph} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.7\textwidth]{Images/bullseye-c-graph.png} % enter the filename here
+		\caption{A task-level sequence curriculum graph of the bullseye example
+		in Fig.~\ref{fig:bullseye-example}} % enter the figure caption here
+		\label{fig:bullseye-cl-graph} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.7\textwidth]{Images/bullseye-c-graph_2.png} % enter the filename here
+		\caption{A task-level non-sequence curriculum graph of the bullseye example in 
+		Fig.~\ref{fig:bullseye-example},  with multiple source tasks} % enter the figure caption here
+		\label{fig:bullseye-cl-graph-2} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+
+\subsection{Task Generation \& Sequencing}
+\emph{Task generation} is the process of creating a good set of intermediate tasks from which to obtain
+valuable experience. These tasks may be predetermined or dynamically generated during the curriculum 
+construction by observing the agent’s behaviour and performance.
+\emph{Sequencing} considers how to generate the edges of the curriculum graph. 
+In a task-level curriculum, this means that sequencing refers to the way in which the tasks are ordered. 
+In manually designed curricula, human intervention selects the ordering of tasks. 
+This is the traditional and more common approach although recently automated methods for 
+sequencing are being explored. These steps are important in determining a good quality curriculum as
+the quality of the curriculum is important to achieve success.
+
+\textbf{Definition:} \emph{Curriculum learning}
+is a methodology to optimise the order in which experience is accumulated by the agent,
+so as to increase performance or training speed on a set of final tasks \cite{curriculum-matteo}.
+
+% \subsection{Curriculum Generation}
+% auto-curricula?
+
+\subsection{Progression Functions}
+\label{subsec:prog-funcs}
+The purpose of a progression function is to determine the how the complexity factor changes as progress is made throughout the curriculum, put simply how much more difficult each intermediate task should be than the previous one assigned to the agent \cite{misc01}. Fixed progression functions predetermine this difficulty increase per time-step, while an adaptive progression function is one where this increase per step varies - depending on the performance of the agent on the previous step.
+
+\subsubsection{Fixed Progression}
+As stated, with a fixed progression function, the complexity increase at every time step is established prior to run-time, based on the function implemented. The two fixed progression functions outlined in \cite{misc01} for which this increase is determined distinctively are linear progression functions and exponential progression functions.
+
+The linear progression function takes only the time-step at which progression should complete (t\textsubscript{e}) as input, was the first to be implemented. Here, the complexity factor is determined linearly \cite{misc01}:
+\[ \Pi_l(t, t_e) = max(\frac{t}{t_e}, 1)\]
+It follows from this equation that the complexity factor is at its lowest at the initial time-step, t\textsubscript{0} at 0, and at its highest at the last time-step t\textsubscript{e} at 1, increasing linearly between the two.
+
+Subsequently, an exponential progression function was devised, where the difficulty at each time step increases in an exponential fashion. In \cite{misc01} this was devised to take an additional parameter, $s$, which influences the slope of the progression. The complexity factor is determined by an exponential
+progression function as:
+% and is used to calculate $\alpha$ and $\beta$. Thus determining whether the increase in complexity per step is initially high and then slows down, or initially low and then speeds up. This equation is (6) in \cite{misc01} and the values of $\alpha$ and $\beta$ are calculated in (7), (6) is repeated here:
+\begin{equation}
+    \Pi_{e}(t, t_{e}, s) = 1-max(\frac{\alpha-\beta}{1-\beta}, 0)
+    \label{eq:exp-prog}
+\end{equation}
+where,
+\begin{equation*}
+    \alpha = {e}^{-\frac{t}{t\textsubscript{e}^{*s}}}, \quad \beta = {e}^{-\frac{1}{s}}
+    \label{eq:alpha-beta-s}
+\end{equation*}
+% \quad is whitespace btw
+
+It follows from this equation that the complexity factor is at its lowest at the initial time-step, t\textsubscript{0} at 0, and at its highest at the last time-step t\textsubscript{e} at 1, increasing exponentially per time-step between the two \cite{misc01}. Fig.~\ref{fig:exp-prog} shows how the complexity factor changes over time for different values of the parameter $s$. Smaller positive values
+show initially steeper gradients of increasing complexity. It is interesting to note that a value of $s=2$
+defaults to a linear progression. Thus, in the implementation, only the exponential progression function
+needs to be implemented to implement both the exponential progression function and the linear progression function.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.8\textwidth]{Images/ch2/exp-prog.png} % enter the filename here
+		\caption{Complexity factor change over time with Exponential progression function for different 
+		parameters of $s$.} % enter the figure caption here
+		\label{fig:exp-prog} % enter the figure label here (for cross referencing)
+	\end{center}
+\end{figure}
+
+\subsubsection{Adaptive Progression}
+Conversely, with an adaptive progression function, the increase in complexity with each successive task is determined based on the online performance of the agent, that is the performance on the previous task. The performance of the agent is calculated at each time-step throughout the task using a performance function, whose contents differ based on the context and the domain. For example, a performance function based on
+cumulative reward would progress complexity factor if the agent passes a provided threshold of
+accumulated reward.
+
+The progression function defined in \cite{misc01} was named 'Friction-Based progression' and uses a performance function that takes inspiration of physics, namely the friction between a body and the plane to work out what the speed of the object s\textsubscript{t}, should be at any given time.
+Friction-Based progression determines the complexity factor based on the time step, the previous complexity, and a parameter to determine the `friction' or resistance which considers the agent's performance \cite{misc01}:
+\begin{equation}
+    \Pi_f(t, c\textsubscript{t-1})) = 1- Uniform(s_t, s\textsubscript{min})
+    \label{eq:friction-based-prog}
+\end{equation}
+``The core concept behind this progression function is to slow down the body when the agent is improving, resulting in an increase in difficulty" \cite{misc01}. Generally, an adaptive progression function attempts to optimise the time taken to learn each task of increasing difficulty, by increasing the complexity in proportion to the performance of the agent on the previous task.
+% \begin{itemize}
+% \item Performance function, mapping function, progression function, friction-based progression
+% \item Continuous Curriculum
+% \item Continuous mapping function
+% \end{itemize}
+
+\subsection{Mapping Functions}
+\label{subsec:mapping-funcs}
+The other core part of the curriculum learning framework outlined in \cite{misc01} is the mapping function.
+The mapping function maps a complexity factor determined by the progression function to a task from the set of all possible tasks in the domain, which the agent will train in.
+This mapping function $\Phi$ defines the specifics of environment using the complexity value at a given time-step \cite{misc01}:
+\[ M_t = \Phi(c_t)\]
+where $M_{t}$ refers to the task at time $t$.
+By working out M\textsubscript{t} at each time-step, we are effectively selecting the tasks added, and the order of these tasks, to the curriculum. This results in the curriculum as defined \cite{misc01}:
+\[ C = \langle M_0, ..., M_e\rangle\].
+
+%\subsection{Current State of Curriculum Learning}
+%sadly couldn't include
+
+\comment{
+\section{Environmental/Experimental/Implementation Baseline}
+**Incomplete**
+
+\subsection{Andrea’s Code (needs better title)}
+**Incomplete**\\
+\begin{itemize}
+    \item Environment which is runs was too different to ours to use directly, but similar enough to 
+    \item We used the principles set out in this as our inspiration for implementation of progression functions in curriculum learning
+    \item Especially the adaptive progression 
+\end{itemize}
+}
+
+
+
