@@ -1,7 +1,11 @@
-The GitLab repository is unavailable and I no longer have access to my university GitLab profile.
+\# Code Base Missing
 
-Instead here are the links to the repositories we drew inspiration from:
-"The aforementioned external resources we used as a basis for, and to inspire, our project are":
+
+
+\# Project Inspirations
+
+The aforementioned external resources we used as a basis for, and to inspire, our project were:
+
 • OpenAI Multi-Agent Emergence Environments - https://github.com/openai/multi-agent-
 emergence-environments
 • TensorFlow https://www.tensorflow.org/
@@ -10,3 +14,6 @@ emergence-environments
 • MuJoCo Worldgen - https://github.com/openai/mujoco-worldgen
 • OpenAI Baselines - https://github.com/openai/baselines
 • Stable Baselines - https://github.com/hill-a/stable-baselines
+
+
+
