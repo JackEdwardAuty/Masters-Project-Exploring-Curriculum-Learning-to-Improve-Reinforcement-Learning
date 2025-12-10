@@ -2,7 +2,7 @@
 
 Developed exploratory software applying Curriculum Learning, training agents on simpler foundational tasks before progressing to complex ones, to improve reinforcement learning. Tested in an OpenAI MuJoCo environment, this approach achieved significantly faster convergence and improved agent performance compared to traditional methods.
 
-
+![Single Hider and Seeker Demo](https://github.com/JackEdwardAuty/Masters-Project-Exploring-Curriculum-Learning-to-Improve-Reinforcement-Learning/blob/4491fbb9a7a19187fd1507c2323ca2d7c6e514a9/Single-Hider-and-Seeker-Example-Lossless.webp)
 
 Code base missing since the GitLab repository is unavailable and I no longer have access to my university GitLab profile.
 
@@ -14,9 +14,9 @@ Instead here is the main repository we built upon:
 
 
 
-\# Extract from Report
+# Extract from Report
 
-\## Summary
+## Summary
 
 The widely adopted approach to human education is organised in a hierarchical fashion, such
 
@@ -44,7 +44,7 @@ reinforcement learning approaches.
 
 
 
-\# Code Base
+# Code Base
 
 The aforementioned external resources we used as a basis for, and to inspire, our project are:
 
