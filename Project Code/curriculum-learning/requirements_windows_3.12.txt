@@ -1,0 +1,12 @@
+# Windows Python 3.12+ COMPATIBLE - LATEST VERSIONS
+numpy
+gymnasium==0.29.1
+stable-baselines3[extra]
+torch
+mujoco
+click
+tensorboard
+scipy
+matplotlib
+tqdm
+pyyaml
